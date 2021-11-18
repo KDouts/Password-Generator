@@ -19,6 +19,7 @@ function writePassword() {
   var hasNumber = prompt("Does your password contain numbers?", "Yes or No");
   
   var password = generatePassword(length, hasUpper, hasLower, hasSpecial, hasNumber);
+  console.log(password);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -27,20 +28,34 @@ function writePassword() {
 
 function generatePassword(length, hasUpper, hasLower, hasSpecial, hasNumber) {
   var characterBank = "";
+  var password = "";
   if (length > 128){
     length = 128;
   }
   console.log(length, hasUpper, hasLower, hasSpecial, hasNumber);
 
   //if has-blank- then add string to characterBank
+  if (hasUpper === "yes") {
+    characterBank += upperAlpha
+  }
 
-  // loop over randomizer x times where x = length
+  if (hasLower === "yes") {
+    characterBank += lowerAlpha
+  }
 
-  //  create ranom number from 0 - characterBank.length
+  if (hasSpecial === "yes") {
+    characterBank += symbols
+  }
 
-  // push characterBank[randomnumber] to password
+  if (hasNumber === "yes") {
+    characterBank += numbers
+  }
 
-  
+  for ( let i = 0; i < characterBank.length; i++) {
+    password += characterBank[Math.floor(Math.random() * length)];
+  }
+
+  return password;
 }
 
 // Add event listener to generate button
