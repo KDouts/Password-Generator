@@ -27,7 +27,7 @@ function writePassword() {
 }
 
 function generatePassword(length, hasUpper, hasLower, hasSpecial, hasNumber) {
-  var characterBank = "";
+  var characterBank = [];
   var password = "";
   if (length > 128){
     length = 128;
@@ -52,7 +52,7 @@ function generatePassword(length, hasUpper, hasLower, hasSpecial, hasNumber) {
   }
 
   for ( let i = 0; i < characterBank.length; i++) {
-    password += characterBank[Math.floor(Math.random() * length)];
+    password += characterBank[Math.floor(Math.random() * characterBank.length)];
   }
 
   return password;
