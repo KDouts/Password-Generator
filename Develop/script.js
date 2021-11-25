@@ -32,20 +32,25 @@ function writePassword() {
 
   var hasLower = confirm("Does your password contain Lowercase characters?");
 
-  if (hasLower === true) {
+  if (hasLower) {
     characterBank += lowerAlpha
   }
 
   var hasSpecial = confirm("Does your password contain Special characters?",);
 
-  if (hasSpecial === true) {
+  if (hasSpecial) {
     characterBank += symbols
   }
 
   var hasNumber = confirm("Does your password contain numbers?",);
   
-  if (hasNumber === true) {
+  if (hasNumber) {
     characterBank += numbers
+  }
+
+  if (!hasLower && !hasUpper && !hasSpecial && !hasNumber) {
+    alert("You must have a charcter group selected! Try again.")
+    return;
   }
 
   var password = generatePassword(length, hasUpper, hasLower, hasSpecial, hasNumber);
